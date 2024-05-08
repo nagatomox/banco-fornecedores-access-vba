@@ -1,0 +1,15 @@
+Private Sub optMostrarSenha_AfterUpdate()
+   If optMostrarSenha = True Then
+      txtSenha.InputMask = ""
+      txtRepeteSenha.InputMask = ""
+      
+      
+      
+   Else
+      txtSenha.InputMask = "Password"
+      txtRepeteSenha.InputMask = "Password"
+      
+   End If
+   
+      
+End Sub
