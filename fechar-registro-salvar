@@ -1,0 +1,66 @@
+Private Sub Comando89_Click()
+Dim intResponse As Integer
+Dim Msg As String
+On Error GoTo 1
+
+    If Me.Dirty Then
+    intResponse = MsgBox("Salvar o registro?", vbYesNoCancel)
+    
+        Select Case intResponse
+            
+            'Salva e vai
+            Case vbYes
+            DoCmd.DoMenuItem acFormBar, acRecordsMenu, acSaveRecord, , acMenuVer70
+            
+            If Me.OpenArgs = "aberturanormal" Then
+                Forms!frmtelaprincipal!Subfrmtelaprincipal!subfrm_02_LocalizaRegistro.Form.Requery
+                Forms!frmtelaprincipal!Subfrmtelaprincipal.Form.Recalc
+                'DoCmd.OpenForm "Fibra Fornecedores"
+                'DoCmd.OpenForm "Fibra Fornecedores"
+            End If
+            
+            DoCmd.Close acForm, "Cadastro"
+               
+               
+            'São salva e vai
+            Case vbNo
+                Me.Undo
+
+                If Me.OpenArgs = "aberturanormal" Then
+                    'DoCmd.OpenForm "Fibra Fornecedores"
+                    'DoCmd.OpenForm "Fibra Fornecedores"
+                End If
+                
+                DoCmd.Close acForm, "Cadastro"
+
+            Case vbCancel
+                DoCmd.CancelEvent
+                Exit Sub
+         
+        End Select
+        
+         Else
+        
+        If Me.OpenArgs = "aberturanormal" Then
+            'DoCmd.OpenForm "Fibra Fornecedores"
+            'DoCmd.OpenForm "Fibra Fornecedores"
+        End If
+        
+        DoCmd.Close acForm, "Cadastro"
+
+    End If
+
+Exit_1:
+    DoCmd.Hourglass False
+    DoCmd.Echo True
+    Exit Sub
+
+1 a:
+    DoCmd.Hourglass False
+    DoCmd.Echo True
+    Msg = "Erro # " & Str(Err.Number) _
+        & vbNewLine & "Descrição: " & Err.Description _
+        & vbNewLine & vbNewLine & "Por favor contate o Administrador de Sistema."
+    MsgBox Msg, vbExclamation, "Atenção"
+    Resume Exit_1
+End Sub
