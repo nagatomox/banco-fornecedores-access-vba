@@ -1,0 +1,6 @@
+Private Sub btNovaConta_Click()
+    DoCmd.Close
+    DoCmd.OpenForm "FormularioLogin"
+    
+    
+End Sub
