@@ -1,6 +1,8 @@
-Private Sub btNovaConta_Click()
+-Utilizei este código para criar uma nova conta em um sistema de login que criei por meio de formulário no Access.
+
+"Private Sub btNovaConta_Click()
     DoCmd.Close
     DoCmd.OpenForm "FormularioLogin"
     
     
-End Sub
+End Sub"
